@@ -72,36 +72,51 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>{isEditing ? "Editar Item" : "Crear Nuevo Item"}</h1>
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h1 className="text-3xl font-bold text-center mb-6">{isEditing ? "Editar Item" : "Crear Nuevo Item"}</h1>
+      
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      
       <form onSubmit={handleSubmit}>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div>
-          <label>Título:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-2">Título:</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
-        <div>
-          <label>Descripción:</label>
+        
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-2">Descripción:</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
-        <div>
-          <label>ID del Estudiante:</label>
+        
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold mb-2">ID del Estudiante:</label>
           <input
             type="text"
             value={studentId}
             onChange={(e) => setStudentId(e.target.value)}
             required
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
-        <button type="submit">{isEditing ? "Actualizar" : "Crear"}</button>
+        
+        <div className="flex justify-center mt-6">
+          <button 
+            type="submit" 
+            className="w-full py-3 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            {isEditing ? "Actualizar" : "Crear"}
+          </button>
+        </div>
       </form>
     </div>
   );
