@@ -1,6 +1,7 @@
+// Home.tsx
 import React, { useState, useEffect } from 'react';
-import { db, collection, getDocs, deleteDoc, doc, query, orderBy } from './firebase';
-import { useHistory } from 'react-router-dom';
+import { db, collection, getDocs, deleteDoc, doc, query, orderBy } from './../config/firebase'; // Cambiar ruta de importación
+import { useNavigate } from 'react-router-dom'; // Usar useNavigate para la navegación
 
 // Definir el tipo del item
 interface Item {
@@ -12,7 +13,7 @@ interface Item {
 
 const Home: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
-  const history = useHistory();
+  const navigate = useNavigate(); // Usar useNavigate para la navegación
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -41,11 +42,11 @@ const Home: React.FC = () => {
   };
 
   const handleEdit = (id: string) => {
-    history.push(`/edit/${id}`);
+    navigate(`/edit/${id}`); // Usamos navigate en lugar de history.push
   };
 
   const handleCreate = () => {
-    history.push('/create');
+    navigate('/create'); // Usamos navigate para redirigir
   };
 
   return (

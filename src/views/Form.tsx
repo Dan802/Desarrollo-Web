@@ -1,11 +1,12 @@
+// Form.tsx
 import React, { useState } from 'react';
-import { db, collection, addDoc, serverTimestamp } from './firebase';
-import { useHistory } from 'react-router-dom';
+import { db, collection, addDoc, serverTimestamp } from './../config/firebase'; // Cambiar ruta de importación
+import { useNavigate } from 'react-router-dom'; // Usar useNavigate para la navegación
 
 const Form: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const history = useHistory();
+  const navigate = useNavigate(); // Usar useNavigate para la navegación
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ const Form: React.FC = () => {
           description,
           createdAt: serverTimestamp(),
         });
-        history.push('/'); // Redirige al Home
+        navigate('/'); // Redirige al Home después de crear el item
       } catch (error) {
         console.error("Error al agregar el item:", error);
       }
@@ -52,3 +53,4 @@ const Form: React.FC = () => {
 };
 
 export default Form;
+    
