@@ -48,16 +48,34 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Lista de Items</h1>
-      <button onClick={handleCreate}>Crear Nuevo Item</button>
-      <ul>
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h1 className="text-3xl font-bold text-center mb-6">Lista de Items</h1>
+      <button
+        onClick={handleCreate}
+        className="w-full py-3 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mb-6"
+      >
+        Crear Nuevo Item
+      </button>
+
+      <ul className="space-y-4">
         {items.map(item => (
-          <li key={item.id}>
-            <h3>{item.title}</h3>
-            {item.description && <p>{item.description}</p>}
-            <button onClick={() => handleEdit(item.id)}>Editar</button>
-            <button onClick={() => handleDelete(item.id)}>Eliminar</button>
+          <li key={item.id} className="p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md">
+            <h3 className="text-xl font-semibold">{item.title}</h3>
+            {item.description && <p className="mt-2 text-gray-700">{item.description}</p>}
+            <div className="mt-4 space-x-4">
+              <button
+                onClick={() => handleEdit(item.id)}
+                className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+              >
+                Editar
+              </button>
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+              >
+                Eliminar
+              </button>
+            </div>
           </li>
         ))}
       </ul>
