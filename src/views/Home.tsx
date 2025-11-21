@@ -1,19 +1,17 @@
-// Home.tsx
 import React, { useState, useEffect } from 'react';
-import { db, collection, getDocs, deleteDoc, doc, query, orderBy } from './../config/firebase'; // Cambiar ruta de importación
-import { useNavigate } from 'react-router-dom'; // Usar useNavigate para la navegación
+import { db, collection, getDocs, deleteDoc, doc, query, orderBy } from './../config/firebase'; 
+import { useNavigate } from 'react-router-dom'; 
 
-// Definir el tipo del item
 interface Item {
   id: string;
   title: string;
   description?: string;
-  createdAt: any; // El tipo de la fecha es cualquier valor de Firebase Timestamp
+  createdAt: any; 
 }
 
 const Home: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
-  const navigate = useNavigate(); // Usar useNavigate para la navegación
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -42,11 +40,11 @@ const Home: React.FC = () => {
   };
 
   const handleEdit = (id: string) => {
-    navigate(`/edit/${id}`); // Usamos navigate en lugar de history.push
+    navigate(`/edit/${id}`); 
   };
 
   const handleCreate = () => {
-    navigate('/create'); // Usamos navigate para redirigir
+    navigate('/create'); 
   };
 
   return (
